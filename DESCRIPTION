@@ -1,0 +1,13 @@
+Package: cyberframer
+Type: Package
+Title: R package to load, process and analyse cyberframe data
+Version: 0.1.0
+Author: Lukáš Hejtmy Hejtmánek
+Maintainer: hejtmy@gmail.com
+Description: This package is accompanying the cyberframe framework for unreal and unity
+    for cognitive experiments. It loads the logs created by the framework, processes and 
+    analyses the resulting datasets.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
