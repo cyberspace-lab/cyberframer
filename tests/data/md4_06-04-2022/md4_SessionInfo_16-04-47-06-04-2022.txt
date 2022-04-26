@@ -1,0 +1,17 @@
+***SESSION HEADER***
+{
+  "Participant": "md4",
+  "Timestamp": "16-04-47-06-04-2022"
+}
+---SESSION HEADER---
+***SESSION INFO***
+{
+  "ProductName": "MoveDifferent",
+  "Version": "0.2.5",
+  "UnityVersion": "2020.3.17f1",
+  "BuildGUID": "d821f550945173a47a8c7291cc9fac2a",
+  "Platform": "Android",
+  "name": "Setup Info",
+  "hideFlags": 0
+}
+---SESSION INFO---

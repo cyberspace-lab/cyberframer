@@ -1,0 +1,45 @@
+***SESSION HEADER***
+{
+  "Participant": "md4",
+  "Timestamp": "16-05-35-06-04-2022"
+}
+---SESSION HEADER---
+***TEST HEADER***
+{
+"settings":{
+  "confirmationpointingtolerance": 5.0,
+  "levelname": "Test",
+  "startinglocation": "PointingStart",
+  "locations": [],
+  "trialsettings": [
+    {
+      "targetname": "Barel"
+    },
+    {
+      "targetname": "Studna"
+    }
+  ],
+  "experimentname": "MoveDifferentPointing"
+},
+"positions":[
+  {
+    "targetname": "Studna",
+    "position": "(16.4, 0.0, -8.8)"
+  },
+  {
+    "targetname": "Barel",
+    "position": "(-2.0, 0.0, 25.9)"
+  }
+]}
+---TEST HEADER---
+Time;Sender;Index;Type;Event
+57935.4791;Experiment;0;Event;Started
+57953.8934;Trial;0;Event;{"FirstPointing":{"PointingTarget":"Barel","PointingDirection":1.489522, "TargetDirection":1.649017}
+57954.1291;Trial;0;Event;{"PointingConfirmed":{"PointingTarget":"Barel","PointingDirection":1.489522, "TargetDirection":1.649475}
+57954.1293;Trial;0;StateChange;Finished
+57954.1294;Trial;1;StateChange;Prepared
+57954.1295;Trial;1;StateChange;Running
+57957.4591;Trial;1;Event;{"FirstPointing":{"PointingTarget":"Studna","PointingDirection":199.0089, "TargetDirection":96.91284}
+57958.7386;Trial;1;Event;{"PointingConfirmed":{"PointingTarget":"Studna","PointingDirection":199.0089, "TargetDirection":96.90448}
+57958.7388;Trial;1;StateChange;Finished
+57958.7389;Experiment;0;StateChange;Finished

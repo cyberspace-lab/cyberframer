@@ -1,0 +1,49 @@
+***SESSION HEADER***
+{
+  "Participant": "md4",
+  "Timestamp": "16-04-47-06-04-2022"
+}
+---SESSION HEADER---
+***TEST HEADER***
+{
+"settings":{
+  "teleportstyle": "Dashing",
+  "levelname": "Test",
+  "startinglocation": "Start",
+  "locations": [],
+  "trialsettings": [
+    {
+      "targetname": "Studna"
+    },
+    {
+      "targetname": "Barel"
+    }
+  ],
+  "experimentname": "MoveDifferentLearning"
+},
+"positions":[
+  {
+    "targetname": "Studna",
+    "position": "(16.4, 0.0, -8.8)"
+  },
+  {
+    "targetname": "Barel",
+    "position": "(-2.0, 0.0, 25.9)"
+  }
+]}
+---TEST HEADER---
+Time;Sender;Index;Type;Event
+57887.9163;Experiment;0;Event;Started
+57887.9164;Trial;0;StateChange;Prepared
+57887.9166;Trial;0;StateChange;Running
+57909.3864;Trial;0;Event;LocationFound:Barel
+57909.3866;Trial;0;StateChange;Finished
+57909.3866;Trial;1;StateChange;Prepared
+57909.3869;Trial;1;StateChange;Running
+57926.6777;Trial;1;Event;LocationFound:Studna
+57926.6779;Trial;1;StateChange;Finished
+57926.6780;Trial;2;StateChange;Prepared
+57926.6783;Trial;2;StateChange;Running
+57935.4623;Trial;2;Event;ReturnedToStart
+57935.4624;Trial;2;StateChange;Finished
+57935.4625;Experiment;0;StateChange;Finished
