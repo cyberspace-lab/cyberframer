@@ -12,11 +12,11 @@ load_experiments <- function(folder, override = FALSE, save = TRUE) {
   session_infos <- open_cyberframe_logs(folder, "SessionInfo",
                                         func = load_session_info,
                                         flatten = FALSE)
-  if (is.null(experiment_infos)) stop("Session info not found")
+  if (is.null(session_infos)) stop("Session info not found")
   res <- list()
-  for (i in 1:length(experiment_infos)) {
-    info <- experiment_infos[[i]]
-    res[[i]] <- load_experiment(folder, exp_timestamp = info$header$Timestamp,
+  for (i in 1:length(session_infos)) {
+    info <- session_infos[[i]]
+    res[[i]] <- load_experiment(folder, exp_timestamp = info$session_header$Timestamp,
                                 override = override, save = save)
   }
   return(res)
