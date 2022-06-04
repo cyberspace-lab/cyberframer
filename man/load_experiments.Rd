@@ -7,7 +7,7 @@
 load_experiments(folder, override = FALSE, save = TRUE)
 }
 \arguments{
-\item{folder}{where to look for brainvr files}
+\item{folder}{where to look for cyberframe files}
 
 \item{override}{if TRUE, deletes and recomputes preprocessed player. defaults to FALSE}
 

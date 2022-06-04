@@ -2,7 +2,7 @@
 % Please edit documentation in R/loading.R
 \name{load_experiment}
 \alias{load_experiment}
-\title{Loads files form a folder into BrainvrObject}
+\title{Loads files form a folder into CyberframeData}
 \usage{
 load_experiment(folder, exp_timestamp = NULL, override = FALSE, save = TRUE)
 }
@@ -18,8 +18,8 @@ IF TRUE, then all files are preprocessed again. Default is FALSE}
 default is TRUE}
 }
 \value{
-BrainvrObject object
+CyberframeData object
 }
 \description{
-Loads files form a folder into BrainvrObject
+Loads files form a folder into CyberframeData
 }
