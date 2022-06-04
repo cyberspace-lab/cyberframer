@@ -10,16 +10,16 @@ Description: This package is accompanying the cyberframe framework for unreal an
 License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Depends:
   R (>= 3.1.0),
-  navr
+  navr,
+  tidyverse
 Remotes:
   hejtmy/navr
 Imports:
   stringr,
-  jsonlite,
-  tidyverse
+  jsonlite
 Suggests: 
   testthat (>= 3.0.0),
   knitr,
