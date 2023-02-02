@@ -259,7 +259,7 @@ open_player_log <- function(directory, exp_timestamp = NULL, override = FALSE,
   df_position <- prepare_navr_log(df_position)
   navr_object <- navr::load_position_data(navr::NavrObject(), df_position)
   navr_object <- navr::prepare_navr(navr_object)
-  if(override && !remove) return(navr_object)
+  if (override && !remove) return(navr_object)
   if (save) save_preprocessed_player(directory, exp_timestamp, navr_object$data)
   return(navr_object)
 }

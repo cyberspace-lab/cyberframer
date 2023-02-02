@@ -11,7 +11,7 @@ prepare_navr_log <- function(df_position){
 positions_to_xyz <- function(df_position){
   ## convert
   ## flip y and z
-  position_columns <- colnames(df_position)[grepl("position",colnames(df_position))]
+  position_columns <- colnames(df_position)[grepl("position", colnames(df_position))]
   for(position_col in position_columns){
     df_position <- vector3_to_columns(df_position, position_col)
   }
@@ -27,12 +27,12 @@ is_column_present <- function(table, name){
 }
 
 json_to_list <- function(text){
-  if(!requireNamespace("jsonlite", quietly = TRUE)){
+  if (!requireNamespace("jsonlite", quietly = TRUE)) {
     stop("needs jsonlite to continue")
   }
-  if(is.null(text)) return(NULL)
-  if(length(text) <= 1) return(NULL)
-  if(!is_json(text)) return(NULL)
+  if (is.null(text)) return(NULL)
+  if (length(text) <= 1) return(NULL)
+  if (!is_json(text)) return(NULL)
   ls <- jsonlite::fromJSON(text)
   return(ls)
 }
@@ -44,7 +44,7 @@ is_json <- function(text){
 }
 
 replace_strings <- function(vec, strings, replacements){
-  if(length(strings) != length(replacements)){
+  if (length(strings) != length(replacements)){
     cat("Strings and replacements need to have the same length")
     return(NULL)
   }
@@ -77,7 +77,8 @@ rename_column <- function(df, old_column, new_column){
 # UNITY -------------
 #turns vector columns in string "(x, y, z)" into three columns(position_x, position_y, position_z) and returns the table
 vector3_to_columns <- function(df_position, column, flip_yz = TRUE, remove=TRUE){
-  if(!requireNamespace("stringr", quietly = TRUE)){
+  # TODO - remove the requirements
+  if (!requireNamespace("stringr", quietly = TRUE)) {
     print("Cannot continue withouth stringr package. Please install it")
     return(FALSE)
   }
@@ -90,7 +91,7 @@ vector3_to_columns <- function(df_position, column, flip_yz = TRUE, remove=TRUE)
   colnames(pos) <- new_names
   pos <- mutate(pos, across(everything(), as.numeric))
   df_position <- add_column(df_position, pos, .after = column)
-  if(remove){
+  if (remove){
     df_position <- select(df_position, -column)
   }
   return(df_position)
