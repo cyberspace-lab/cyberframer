@@ -1,4 +1,4 @@
-filter_experiment <- function(){
+filter_experiment <- function() {
 
 }
 
@@ -56,6 +56,9 @@ get_trial_times <- function(obj, index) {
 #' @examples
 get_finished_trials_indices <- function(obj){
   dat <- obj$data$experiment_log$data
-  dat <- filter(dat, Sender=="Trial", Type=="StateChange", Event=="Finished")
+  dat <- filter(dat,
+    Sender == "Trial",
+    Type == "StateChange",
+    Event == "Finished")
   return(dat$Index)
 }

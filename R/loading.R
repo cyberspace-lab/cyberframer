@@ -1,6 +1,6 @@
 #' Goes through the folder and loads every experiment info into separate object
 #'
-#' @param override if TRUE, deletes and recomputes preprocessed player. defaults to FALSE
+#' @param override if TRUE, deletes and recomputes preprocessed player. default is FALSE
 #' @param folder where to look for cyberframe files
 #' @param save if true, then preprocessed logs are saved to the folder
 #'
@@ -16,8 +16,9 @@ load_experiments <- function(folder, override = FALSE, save = TRUE) {
   res <- list()
   for (i in 1:length(session_infos)) {
     info <- session_infos[[i]]
-    res[[i]] <- load_experiment(folder, exp_timestamp = info$session_header$Timestamp,
-                                override = override, save = save)
+    res[[i]] <- load_experiment(folder,
+      exp_timestamp = info$session_header$Timestamp, 
+      override = override, save = save)
   }
   return(res)
 }
@@ -41,13 +42,19 @@ load_experiment <- function(folder, exp_timestamp = NULL,
   session_info <- open_cyberframe_log(folder, log_name = "SessionInfo",
                                       exp_timestamp = exp_timestamp,
                                       func = load_session_info)
-  if (is.null(session_info)) stop("Session info not found")
+  if (is.null(session_info)) {
+    stop("Session info not found")
+  }
   # if multiple logs or no logs, quit
-  if (is.null(exp_timestamp)) exp_timestamp <- session_info$session_header$Timestamp
-  ## TODO separate preprocess adn opening
+  if (is.null(exp_timestamp)) {
+    exp_timestamp <- session_info$session_header$Timestamp
+  }
+  ## TODO separate preprocess and opening
   navr_object <- open_player_log(folder, exp_timestamp = exp_timestamp,
                                  override = override, save = save)
-  if (is.null(navr_object)) stop("Player log not found")
+  if (is.null(navr_object)) {
+    stop("Player log not found")
+  }
   # preprocesses player log
   # checks if there is everything we need and if not, recomputes the stuff
   test_log <- open_experiment_logs(folder, exp_timestamp, flatten = TRUE)
@@ -75,8 +82,8 @@ load_session_info <- function(filepath) {
   return(res)
 }
 
-#' Iterates over all _experiment_ files in a folder asnd saves them one by one to
-#' a return list
+#' Iterates over all __experiment_ files in a folder an saves 
+#' them one by one to a return list
 #'
 #' @param directory directory where the file is located
 #' @param flatten in case of only a single list is returned, unnests the list.
@@ -143,10 +150,10 @@ open_cyberframe_logs <- function(directory, log_name, exp_timestamp = NULL,
 open_cyberframe_log <- function(directory, log_name, exp_timestamp = NULL,
                                 func = NULL) {
   pths <- find_cyberframe_logs(directory, log_name, exp_timestamp)
-  if(is.null(pths)) return(NULL)
-  if(length(pths) > 1){
+  if (is.null(pths)) return(NULL)
+  if (length(pths) > 1) {
     warning("Cannot open log ", log_name, " in ", directory,
-            ". Multiple logs of the same name.  You need to specify the timestamp")
+            ". Multiple logs of the same name. You need to specify the timestamp")
     return(NULL)
   }
   res <- load_cyberframe_log(pths[1], func = func)
@@ -167,7 +174,7 @@ open_cyberframe_log <- function(directory, log_name, exp_timestamp = NULL,
 #'
 #' @examples
 load_cyberframe_log <- function(filepath, func = NULL, ...) {
-  if(!is.null(func)){
+  if (!is.null(func)) {
     result <- func(filepath)
     return(result)
   }
@@ -190,9 +197,8 @@ load_cyberframe_log <- function(filepath, func = NULL, ...) {
   return(result)
 }
 
-
 find_cyberframe_logs <- function(directory, log_name, exp_timestamp = NULL,
-                              warning_missing = TRUE) {
+                                 warning_missing = TRUE) {
   ptr <- create_log_search_pattern(log_name, exp_timestamp)
   logs <- list.files(directory, pattern = ptr, full.names = TRUE)
   if (length(logs) < 1) {
@@ -215,7 +221,7 @@ find_cyberframe_logs <- function(directory, log_name, exp_timestamp = NULL,
 #'
 #' @param directory where the log should be located
 #' @param exp_timestamp provides timestamp of a log to load
-#' @param override if true, deletes processed player log and loads the unprocessed.
+#' @param override if true, deletes processed player log and loads the unprocessed
 #' if FALSE, load preprocessed log if present
 #' @param remove should the existing prepricessed log be removed
 #' @param save Should the log be saved after being preprocessed
@@ -229,7 +235,7 @@ open_player_log <- function(directory, exp_timestamp = NULL, override = FALSE,
   if (nchar(ls_log_path$path) == 0) return(NULL)
   if (nchar(ls_log_path$path_preprocessed) > 0) {
     if (override) {
-      if(remove){
+      if (remove) {
         message("Removing preprocessed log ", ls_log_path$path_preprocessed)
         file.remove(ls_log_path$path_preprocessed)
       }
@@ -237,9 +243,9 @@ open_player_log <- function(directory, exp_timestamp = NULL, override = FALSE,
       message("Loading preprocessed player log ", ls_log_path$path_preprocessed)
       # TODO - remove data.table
       navr_object <- navr::NavrObject()
-      navr_object$data <- read.table(ls_log_path$path_preprocessed, header = TRUE,
-                                sep = ";", dec = ".", stringsAsFactors = FALSE,
-                                encoding = "UTF-8")
+      navr_object$data <- read.table(ls_log_path$path_preprocessed,
+        header = TRUE, sep = ";", dec = ".", stringsAsFactors = FALSE,
+        encoding = "UTF-8")
       return(navr_object)
     }
   }
@@ -247,12 +253,9 @@ open_player_log <- function(directory, exp_timestamp = NULL, override = FALSE,
   # TODO - chagne so it doesn't read text so friggin much :(
   text <- readLines(ls_log_path$path, warn = FALSE, encoding = "UTF-8")
   i_bottom <- get_header_end_index(text)
-  #bottomHeaderIndex <- get_indicies_between(text, "SESSION HEADER")$end # get beginning of the log
-  # TODO - remove data.table
   df_position <- read.table(ls_log_path$path, header = TRUE, sep = ";",
-                            dec = ".", skip = i_bottom, stringsAsFactors = FALSE)
-  # deletes the last column - it's there for the easier logging from unity
-  # - its here because of how preprocessing works
+                            dec = ".", skip = i_bottom,
+                            stringsAsFactors = FALSE)
   df_position <- prepare_navr_log(df_position)
   navr_object <- navr::load_position_data(navr::NavrObject(), df_position)
   navr_object <- navr::prepare_navr(navr_object)
