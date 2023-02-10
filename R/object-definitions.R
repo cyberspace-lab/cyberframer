@@ -4,7 +4,7 @@
 #' @export
 #'
 #' @examples
-CyberframeData <- function(){
+CyberframeData <- function() {
   obj <- list()
   obj$participant_id <- ""
   obj$experiment_name <- ""

@@ -14,12 +14,12 @@ filter_experiment <- function() {
 filter_trial <- function(obj, index) {
   # getstart and end time
   times <- get_trial_times(obj, index)
-  if(is.null(times)) return(NULL)
+  if (is.null(times)) return(NULL)
   # filter experiment log
 
   # filter position
   pos <- obj$data$position$data
-  pos <- pos[pos$timestamp >= times$Running & pos$timestamp <= times$Finished,]
+  pos <- pos[pos$timestamp >= times$Running & pos$timestamp <= times$Finished, ]
   obj$data$position$data <- pos
   return(obj)
 }
@@ -41,7 +41,7 @@ get_trial_times <- function(obj, index) {
     Sender == "Trial",
     Type == "StateChange",
     Index %in% index)
-  if(nrow(dat) == 0) return(NULL)
+  if (nrow(dat) == 0) return(NULL)
   out <- setNames(as.list(dat$Time), dat$Event)
   return(out)
 }
@@ -54,7 +54,7 @@ get_trial_times <- function(obj, index) {
 #' @export
 #'
 #' @examples
-get_finished_trials_indices <- function(obj){
+get_finished_trials_indices <- function(obj) {
   dat <- obj$data$experiment_log$data
   dat <- filter(dat,
     Sender == "Trial",

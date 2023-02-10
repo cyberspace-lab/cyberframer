@@ -82,7 +82,7 @@ load_session_info <- function(filepath) {
   return(res)
 }
 
-#' Iterates over all __experiment_ files in a folder an saves 
+#' Iterates over all __experiment_ files in a folder an saves
 #' them one by one to a return list
 #'
 #' @param directory directory where the file is located
@@ -221,8 +221,8 @@ find_cyberframe_logs <- function(directory, log_name, exp_timestamp = NULL,
 #'
 #' @param directory where the log should be located
 #' @param exp_timestamp provides timestamp of a log to load
-#' @param override if true, deletes processed player log and loads the unprocessed
-#' if FALSE, load preprocessed log if present
+#' @param override if true, deletes processed player log and loads the
+#' unprocessed if FALSE, load preprocessed log if present
 #' @param remove should the existing prepricessed log be removed
 #' @param save Should the log be saved after being preprocessed
 #'

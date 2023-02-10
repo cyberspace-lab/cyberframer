@@ -43,12 +43,12 @@ is_json <- function(text){
   return(all(bool))
 }
 
-replace_strings <- function(vec, strings, replacements){
-  if (length(strings) != length(replacements)){
+replace_strings <- function(vec, strings, replacements) {
+  if (length(strings) != length(replacements)) {
     cat("Strings and replacements need to have the same length")
     return(NULL)
   }
-  for (i in 1:length(strings)){
+  for (i in seq_len(length(strings))) {
     vec[vec == strings[i]] <- replacements[i]
   }
   return(vec)
@@ -62,21 +62,23 @@ replace_strings <- function(vec, strings, replacements){
 #'
 #' @return modified data.frame
 #' @noRd
-prepare_navr_column_names <- function(df){
+prepare_navr_column_names <- function(df) {
   df <- rename_column(df, "Time", "timestamp")
   new_names <- tolower(gsub("[.]", "_", colnames(df))) #replaces . with _
   colnames(df) <- new_names
   return(df)
 }
 
-rename_column <- function(df, old_column, new_column){
+rename_column <- function(df, old_column, new_column) {
   colnames(df)[colnames(df)==old_column] <- new_column
   return(df)
 }
 
 # UNITY -------------
-#turns vector columns in string "(x, y, z)" into three columns(position_x, position_y, position_z) and returns the table
-vector3_to_columns <- function(df_position, column, flip_yz = TRUE, remove=TRUE){
+#' turns vector columns in string "(x, y, z)" into three 
+#' columns (position_x, position_y, position_z) and returns the table
+vector3_to_columns <- function(df_position, column,
+  flip_yz = TRUE, remove = TRUE) {
   # TODO - remove the requirements
   if (!requireNamespace("stringr", quietly = TRUE)) {
     print("Cannot continue withouth stringr package. Please install it")
@@ -98,7 +100,7 @@ vector3_to_columns <- function(df_position, column, flip_yz = TRUE, remove=TRUE)
 }
 
 #pure helpers for my particular unity logging
-position_to_vector <- function(positions){
+position_to_vector <- function(positions) {
   res <- positions
   all_names <- names(positions)
   for(name in all_names){

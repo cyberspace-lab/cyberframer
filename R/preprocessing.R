@@ -55,6 +55,6 @@ unity_vector_to_numeric <- function(text) {
   }
   out <- sapply(text, single_convert, USE.NAMES = FALSE, simplify = TRUE)
   out <- t(out)
-  if(nrow(out) == 1) out <- as.vector(out)
+  if (nrow(out) == 1) out <- as.vector(out)
   return(out)
 }
