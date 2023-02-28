@@ -1,6 +1,7 @@
 #' Goes through the folder and loads every experiment info into separate object
 #'
-#' @param override if TRUE, deletes and recomputes preprocessed player. default is FALSE
+#' @param override if TRUE, deletes and recomputes preprocessed player.
+#' default is FALSE
 #' @param folder where to look for cyberframe files
 #' @param save if true, then preprocessed logs are saved to the folder
 #'
@@ -14,7 +15,7 @@ load_experiments <- function(folder, override = FALSE, save = TRUE) {
                                         flatten = FALSE)
   if (is.null(session_infos)) stop("Session info not found")
   res <- list()
-  for (i in 1:length(session_infos)) {
+  for (i in seq_len(length(session_infos))) {
     info <- session_infos[[i]]
     res[[i]] <- load_experiment(folder,
       exp_timestamp = info$session_header$Timestamp, 
