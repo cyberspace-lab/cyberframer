@@ -4,7 +4,6 @@
   - '`filter_trial`'
   - '`get_finished_trials_indices`'
   - '`get_trial_times`'
-  - '`hello`'
   - '`load_cyberframe_log`'
   - '`load_experiment`'
   - '`load_experiments`'

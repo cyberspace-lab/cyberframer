@@ -62,3 +62,14 @@ get_finished_trials_indices <- function(obj) {
     Event == "Finished")
   return(dat$Index)
 }
+
+get_trial_position <- function(obj, iTrial) {
+  times <- get_trial_times(obj, iTrial)
+  navr_obj <- navr::filter_times(obj$data$position, c(times$start, times$end))
+  return(navr_obj)
+}
+
+get_position <- function(obj) {
+  return(obj$data$position)
+}
+
