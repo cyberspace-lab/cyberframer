@@ -6,7 +6,13 @@
 Contains framework specific header, and optionally data.frame data. See
 \code{\link{load_cyberframe_log}} for specifics}
 \usage{
-open_cyberframe_log(directory, log_name, exp_timestamp = NULL, func = NULL)
+open_cyberframe_log(
+  directory,
+  log_name,
+  exp_timestamp = NULL,
+  func = NULL,
+  optional = FALSE
+)
 }
 \arguments{
 \item{directory}{Where to search for the log}
@@ -17,9 +23,6 @@ open_cyberframe_log(directory, log_name, exp_timestamp = NULL, func = NULL)
 
 \item{func}{function used to load the log. Optional. IF NULL, default loading
 function is used}
-}
-\value{
-
 }
 \description{
 Searches for and loads a generic cyberframe framework log.

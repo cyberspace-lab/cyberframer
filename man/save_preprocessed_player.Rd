@@ -21,9 +21,6 @@ save_preprocessed_player(
 
 \item{player_log}{table to be saved}
 }
-\value{
-
-}
 \description{
 Saves preprocessed player ot hte given folder. Receives either specific name,
 or gets the name from already present player logs. If there are multiple

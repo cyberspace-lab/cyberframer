@@ -2,16 +2,16 @@
 % Please edit documentation in R/getters.R
 \name{get_finished_trials_indices}
 \alias{get_finished_trials_indices}
-\title{Title}
+\title{Returns indices of trials which were finished completely}
 \usage{
 get_finished_trials_indices(obj)
 }
 \arguments{
-\item{obj}{}
+\item{obj}{Cyberframe object}
 }
 \value{
-
+vector of indices of finished trials. Typically zero based
 }
 \description{
-Title
+Returns indices of trials which were finished completely
 }

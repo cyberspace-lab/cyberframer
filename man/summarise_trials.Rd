@@ -2,16 +2,19 @@
 % Please edit documentation in R/analysis.R
 \name{summarise_trials}
 \alias{summarise_trials}
-\title{Title}
+\title{Makes a quick summary of the given trials}
 \usage{
-summarise_trials(obj, index = NA)
+summarise_trials(obj, indices = c())
 }
 \arguments{
-\item{index}{}
+\item{obj}{Cyberframe object}
+
+\item{index}{indices of the trials to summarise. In the original
+format, which is generally zero based.}
 }
 \value{
-
+Dataframe with summary of the trials
 }
 \description{
-Title
+Makes a quick summary of the given trials
 }

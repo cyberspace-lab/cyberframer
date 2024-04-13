@@ -24,9 +24,6 @@ log, extract some log specific information etc.). If null, default function is u
 
 \item{flatten}{in case only a single file is found, should it be unnested? defaults to false}
 }
-\value{
-
-}
 \description{
 Generic loading of all the results, experiment and other logs
 }

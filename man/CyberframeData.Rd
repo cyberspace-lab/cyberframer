@@ -6,9 +6,6 @@
 \usage{
 CyberframeData()
 }
-\value{
-
-}
 \description{
 Title
 }

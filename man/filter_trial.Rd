@@ -2,16 +2,18 @@
 % Please edit documentation in R/getters.R
 \name{filter_trial}
 \alias{filter_trial}
-\title{Title}
+\title{Returns cyberframe object with only the data from a single trial}
 \usage{
 filter_trial(obj, index)
 }
 \arguments{
-\item{index}{}
+\item{obj}{Cyberframe object}
+
+\item{index}{Index of the trial. Zero based}
 }
 \value{
-
+Cyberframe object with only the data from a single trial
 }
 \description{
-Title
+Returns cyberframe object with only the data from a single trial
 }

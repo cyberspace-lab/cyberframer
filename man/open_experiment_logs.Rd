@@ -2,8 +2,8 @@
 % Please edit documentation in R/loading.R
 \name{open_experiment_logs}
 \alias{open_experiment_logs}
-\title{Iterates over all _experiment_ files in a folder asnd saves them one by one to
-a return list}
+\title{Iterates over all __experiment_ files in a folder an saves
+them one by one to a return list}
 \usage{
 open_experiment_logs(dir, exp_timestamp = NULL, flatten = FALSE)
 }
@@ -15,10 +15,7 @@ Beware, unnested list causes issues with opening experiments}
 
 \item{directory}{directory where the file is located}
 }
-\value{
-
-}
 \description{
-Iterates over all _experiment_ files in a folder asnd saves them one by one to
-a return list
+Iterates over all __experiment_ files in a folder an saves
+them one by one to a return list
 }

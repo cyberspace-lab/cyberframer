@@ -17,8 +17,8 @@ open_player_log(
 
 \item{exp_timestamp}{provides timestamp of a log to load}
 
-\item{override}{if true, deletes processed player log and loads the unprocessed.
-if FALSE, load preprocessed log if present}
+\item{override}{if true, deletes processed player log and loads the
+unprocessed if FALSE, load preprocessed log if present}
 
 \item{save}{Should the log be saved after being preprocessed}
 

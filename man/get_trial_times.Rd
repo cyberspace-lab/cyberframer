@@ -2,16 +2,20 @@
 % Please edit documentation in R/getters.R
 \name{get_trial_times}
 \alias{get_trial_times}
-\title{Title}
+\title{returns a list of starting and ending times of a trial}
 \usage{
 get_trial_times(obj, index)
 }
 \arguments{
-\item{index}{}
+\item{obj}{Cyberframe object}
+
+\item{index}{Index of the trial. Works with trial numbers as
+they appear in the framework, so typically zero based}
 }
 \value{
-
+list of lists. Each list contains a single trial,
+and parameters from the cyberframe (Running, Finished, Started etc.)
 }
 \description{
-Title
+returns a list of starting and ending times of a trial
 }

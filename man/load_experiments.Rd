@@ -9,7 +9,8 @@ load_experiments(folder, override = FALSE, save = TRUE)
 \arguments{
 \item{folder}{where to look for cyberframe files}
 
-\item{override}{if TRUE, deletes and recomputes preprocessed player. defaults to FALSE}
+\item{override}{if TRUE, deletes and recomputes preprocessed player.
+default is FALSE}
 
 \item{save}{if true, then preprocessed logs are saved to the folder}
 }
