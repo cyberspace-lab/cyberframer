@@ -37,14 +37,17 @@ filter_trial <- function(obj, index) {
 #' @examples
 get_trial_times <- function(obj, index) {
   dat <- obj$data$experiment_log$data
-  dat <- filter(dat,
+  dat <- filter(
+    dat,
     Sender == "Trial",
     Type == "StateChange",
-    Index %in% index)
+    Index %in% index
+  )
   if (nrow(dat) == 0) return(NULL)
   out <- setNames(as.list(dat$Time), dat$Event)
   return(out)
 }
+
 
 #' Returns indices of trials which were finished completely
 #'
@@ -56,20 +59,54 @@ get_trial_times <- function(obj, index) {
 #' @examples
 get_finished_trials_indices <- function(obj) {
   dat <- obj$data$experiment_log$data
-  dat <- filter(dat,
+  dat <- filter(
+    dat,
     Sender == "Trial",
     Type == "StateChange",
-    Event == "Finished")
+    Event == "Finished"
+  )
   return(dat$Index)
 }
 
+
+#' Returns the position data from the cyberframe object for a single trial
+#' @param obj Cyberframe object
+#' @param iTrial Index of the trial
+#' @return navr::object with position data
+#' 
+#' @export
 get_trial_position <- function(obj, iTrial) {
   times <- get_trial_times(obj, iTrial)
-  navr_obj <- navr::filter_times(obj$data$position, c(times$start, times$end))
+  navr_obj <- navr::filter_times(obj$data$position, c(times$Running, times$Finished))
   return(navr_obj)
 }
 
+#' Returns the position data from the cyberframe object
+#' @param obj Cyberframe object
+#' @return navr::object with position data
+#' 
+#' @export
 get_position <- function(obj) {
   return(obj$data$position)
 }
 
+#' Returns the position data from the cyberframe object at a specific time
+#' @param obj Cyberframe object
+#' @param time Time to get the position data for
+#' @return data frame with position data or NULL
+#' 
+#' @export
+get_position_at_time <- function(obj, time) {
+  pos <- obj$data$position$data
+  pos <- pos[pos$timestamp == time, ]
+  return(pos)
+}
+
+#' Returns the experiment log from the cyberframe object
+#' @param obj Cyberframe object
+#' @return list with experiment log data
+#' 
+#' @export
+get_experiment_log <- function(obj) {
+  return(obj$data$experiment_log)
+}

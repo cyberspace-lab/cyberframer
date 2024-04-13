@@ -17,9 +17,10 @@ load_experiments <- function(folder, override = FALSE, save = TRUE) {
   res <- list()
   for (i in seq_len(length(session_infos))) {
     info <- session_infos[[i]]
-    res[[i]] <- load_experiment(folder,
-      exp_timestamp = info$session_header$Timestamp, 
-      override = override, save = save)
+    res[[i]] <- load_experiment(
+      folder, exp_timestamp = info$session_header$Timestamp,
+      override = override, save = save
+    )
   }
   return(res)
 }
@@ -59,7 +60,7 @@ load_experiment <- function(folder, exp_timestamp = NULL,
   # preprocesses player log
   # checks if there is everything we need and if not, recomputes the stuff
   test_log <- open_experiment_logs(folder, exp_timestamp, flatten = TRUE)
-  result_log <- open_cyberframe_log(folder, "results", exp_timestamp)
+  result_log <- open_cyberframe_log(folder, "results", exp_timestamp, optional = TRUE)
   obj <- CyberframeData()
   obj$participant_id <- session_info$session_header$Participant
   obj$timestamp <- exp_timestamp
@@ -149,9 +150,12 @@ open_cyberframe_logs <- function(directory, log_name, exp_timestamp = NULL,
 #'
 #' @examples
 open_cyberframe_log <- function(directory, log_name, exp_timestamp = NULL,
-                                func = NULL) {
+                                func = NULL, optional = FALSE) {
   pths <- find_cyberframe_logs(directory, log_name, exp_timestamp)
-  if (is.null(pths)) return(NULL)
+  if (is.null(pths)) {
+    if (!optional) warning("Cannot open log ", log_name, " in ", directory)
+    return(NULL)
+  }
   if (length(pths) > 1) {
     warning("Cannot open log ", log_name, " in ", directory,
             ". Multiple logs of the same name. You need to specify the timestamp")
@@ -199,23 +203,17 @@ load_cyberframe_log <- function(filepath, func = NULL, ...) {
 }
 
 find_cyberframe_logs <- function(directory, log_name, exp_timestamp = NULL,
-                                 warning_missing = TRUE) {
+                                 warning_many = TRUE) {
   ptr <- create_log_search_pattern(log_name, exp_timestamp)
   logs <- list.files(directory, pattern = ptr, full.names = TRUE)
-  if (length(logs) < 1) {
-    if (warning_missing) {
-      warning("Could not find any ", log_name, " logs in ", directory,
-              " for timestamp ",exp_timestamp)
+  if (length(logs) < 1) return(NULL)
+  if (length(logs) > 1 && !is.null(exp_timestamp)) {
+    if(warning_many) {
+      warning("Multiple logs of the same name in ", directory,
+              ". You need to specify the timestamp")
     }
-    return(NULL)
   }
-  if (length(logs) > 1 & !is.null(exp_timestamp)) {
-    warning("There are multiple ", log_name, " in the ", directory,
-            " with timestamp ", exp_timestamp)
-    return(NULL)
-  } else {
-    return(logs)
-  }
+  return(logs)
 }
 
 #' Searches a directory for a player log. Returns player log data.table
