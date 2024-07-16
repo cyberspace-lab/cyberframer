@@ -11,7 +11,7 @@
 summarise_trials <- function(obj, indices = c()) {
   if (length(indices) < 1) indices <- get_finished_trials_indices(obj)
   out <- data.frame()
-  for (i in indices){
+  for (i in indices) {
     obj_trial <- filter_trial(obj, i)
     res <- summarise_position(obj_trial$data$position)
     res <- append(res, list(index = i))
@@ -29,6 +29,7 @@ summarise_position <- function(position_data) {
   dat <- position_data$data
   out <- list(
     duration = diff(range(dat$timestamp)),
-    distance = tail(dat$distance_total, 1)) - head(dat$distance_total, 1)
+    distance = diff(range(dat$distance_total))
+  )
   return(out)
 }
