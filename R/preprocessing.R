@@ -1,4 +1,3 @@
-
 #' Saves preprocessed player ot hte given folder. Receives either specific name,
 #' or gets the name from already present player logs. If there are multiple
 #' player logs in the folder,takes the name from the first available

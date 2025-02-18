@@ -4,12 +4,17 @@
 \alias{get_position_at_time}
 \title{Returns the position data from the cyberframe object at a specific time}
 \usage{
-get_position_at_time(obj, time)
+get_position_at_time(obj, time, limit = "exact")
 }
 \arguments{
 \item{obj}{Cyberframe object}
 
 \item{time}{Time to get the position data for}
+
+\item{limit}{"exact", "after" or "before". If "after", the position data is returned
+if the timestamp is greater than or equal to the given time. If "before",
+the position data is returned if the timestamp is less than or equal to the
+given time.}
 }
 \value{
 data frame with position data or NULL

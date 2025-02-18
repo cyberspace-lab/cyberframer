@@ -93,13 +93,26 @@ get_position <- function(obj) {
 #' Returns the position data from the cyberframe object at a specific time
 #' @param obj Cyberframe object
 #' @param time Time to get the position data for
+#' @param limit "exact", "after" or "before". If "after", the position data is returned
+#' if the timestamp is greater than or equal to the given time. If "before",
+#' the position data is returned if the timestamp is less than or equal to the
+#' given time.
 #' @return data frame with position data or NULL
 #' 
 #' @export
-get_position_at_time <- function(obj, time) {
+get_position_at_time <- function(obj, time, limit = "exact") {
   pos <- obj$data$position$data
-  pos <- pos[pos$timestamp == time, ]
-  return(pos)
+  if (!(limit %in% c("exact", "after", "before"))) {
+    stop("Limit must be one of: 'exact', 'after', 'before'")
+  }
+  row_idx <- switch(limit,
+    "exact" = which(pos$timestamp == time),
+    "after" = which(pos$timestamp >= time)[1],
+    "before" = tail(which(pos$timestamp <= time), 1)
+  )
+  
+  if (length(row_idx) == 0) return(NULL)
+  return(pos[row_idx, ])
 }
 
 #' Returns the experiment log from the cyberframe object
