@@ -166,7 +166,9 @@ open_cyberframe_log <- function(directory, log_name, exp_timestamp = NULL,
 }
 
 #' Loads a generic cyberframe framework log. These logs have specific header and
-#' data notaions.
+#' data notations. The default logs should be saved in UTF-8 encoding with semicolon 
+#' as a separator, dot for decimal points and unquoted strings. 
+#' The function loads the header and the data frame.  
 #'
 #' @param filepath path to the log
 #' @param func optional loading function, it loads the log instead of the
@@ -188,6 +190,7 @@ load_cyberframe_log <- function(filepath, func = NULL, ...) {
   df_data <- try(read.table(filepath,
                             skip = i_bottom, sep = ";", header = TRUE,
                             stringsAsFactors = FALSE, encoding = "UTF-8",
+                            dec = ".", quote = "",
                             ...
   ), silent = TRUE)
   if (class(df_data) == "data.frame"){
