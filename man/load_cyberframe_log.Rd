@@ -3,7 +3,9 @@
 \name{load_cyberframe_log}
 \alias{load_cyberframe_log}
 \title{Loads a generic cyberframe framework log. These logs have specific header and
-data notaions.}
+data notations. The default logs should be saved in UTF-8 encoding with semicolon 
+as a separator, dot for decimal points and unquoted strings. 
+The function loads the header and the data frame.}
 \usage{
 load_cyberframe_log(filepath, func = NULL, ...)
 }
@@ -21,5 +23,7 @@ list with parsed data and optionally $data field with log's dataframe
 }
 \description{
 Loads a generic cyberframe framework log. These logs have specific header and
-data notaions.
+data notations. The default logs should be saved in UTF-8 encoding with semicolon 
+as a separator, dot for decimal points and unquoted strings. 
+The function loads the header and the data frame.
 }

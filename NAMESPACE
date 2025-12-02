@@ -2,6 +2,7 @@
 
 S3method(plot_trial_path,cyberframe)
 export(CyberframeData)
+export(filter_cyberframe_times)
 export(filter_trial)
 export(get_experiment_log)
 export(get_finished_trials_indices)

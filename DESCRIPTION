@@ -1,7 +1,7 @@
 Package: cyberframer
 Type: Package
 Title: R package to load, process and analyse cyberframe data
-Version: 0.1.2
+Version: 0.1.3
 Author: Lukáš Hejtmy Hejtmánek
 Maintainer: Lukáš Hejtmánek <hejtmy@gmail.com>
 Description: This package is accompanying the cyberframe framework for unreal and unity
@@ -20,7 +20,7 @@ Remotes:
 Imports:
   stringr,
   jsonlite
-Suggests: 
+Suggests:
   testthat (>= 3.0.0),
   knitr,
   rmarkdown,

@@ -1,7 +1,3 @@
-filter_experiment <- function() {
-
-}
-
 #' Returns cyberframe object with only the data from a single trial
 #'
 #' @param obj Cyberframe object
@@ -18,8 +14,19 @@ filter_trial <- function(obj, index) {
   # filter experiment log
 
   # filter position
+  obj <- filter_cyberframe_times(obj, c(times$Running, times$Finished))
+  return(obj)
+}
+
+#' Returns cyberframe object with only the data from a specific time range
+#'
+#' @param obj Cyberframe object
+#' @param times Vector of length 2 with start and end times
+#' @return Cyberframe object with only the data from the specified time range
+#' @export
+filter_cyberframe_times <- function(obj, times) {
   pos <- obj$data$position$data
-  pos <- pos[pos$timestamp >= times$Running & pos$timestamp <= times$Finished, ]
+  pos <- pos[pos$timestamp >= times[1] & pos$timestamp <= times[2], ]
   obj$data$position$data <- pos
   return(obj)
 }
